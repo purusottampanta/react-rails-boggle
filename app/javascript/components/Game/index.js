@@ -42,7 +42,7 @@ console.log(props.data, props);
       wordScoreList: {},
       showingScore: false,
       currentUser: currentUser,
-      timeLimit: '00:00:15'
+      timeLimit: 15
     };
 
     this.onUserAction = this.onUserAction.bind(this);
@@ -50,7 +50,7 @@ console.log(props.data, props);
   }
 
   onTimerEnd(){
-    console.log('erfer');
+    console.log('erferewrferf');
     this.setState({
       showingScore: true
     });

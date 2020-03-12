@@ -57,7 +57,7 @@ export default class Timer extends Component {
       alert('3e4f43');
       this.pause();
       this.reset();
-      this.props.handler.bind(this);
+      this.props.onTimerEnd();
     }
     let time = SecondsTohhmmss(clock / 1000)
     this.setState({time: time })
@@ -99,7 +99,7 @@ export default class Timer extends Component {
         <br />
         <button onClick={this.reset.bind(this)} style={buttonStyle} >reset</button>
         <button onClick={this.play.bind(this)} style={buttonStyle} >play</button>
-        <button onClick={this.props.handler.bind(this)} style={buttonStyle} >pause</button>
+        <button onClick={this.props.onTimerEnd} style={buttonStyle} >pause</button>
       </div>
     )
   }

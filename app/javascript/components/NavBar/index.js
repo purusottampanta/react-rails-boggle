@@ -10,22 +10,23 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
 
-     this.handler = this.handler.bind(this);
-
   }
 
-  handler(){
-    console.log('erfer');
+  onTimerEnd(){
+    console.log('erfe');
+    console.log(this.props);
+    this.props.onTimerEnd();
+    // this.props.onTimerEnd.bind(this);
   }
 
   render() {
     let { currentUser, timeLimit } = this.props;
-    const OPTIONS = { prefix: 'seconds elapsed!', delay: 100, maxTime: 15}
+    const OPTIONS = { prefix: 'seconds elapsed!', delay: 100, maxTime: timeLimit}
 
     return (
       <div className="nav-bar">
         <div className="navbar-left">
-          <Timer  options={OPTIONS} handler={this.handler} />
+          <Timer  options={OPTIONS} onTimerEnd={this.onTimerEnd.bind(this)} />
         </div>
 
         <div className="navbar-right">
