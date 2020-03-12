@@ -17,15 +17,21 @@ export default class Timer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { clock: 0, time: '' }
+    this.state = {
+      clock: 0,
+      time: '', 
+      timerStyle: {
+        fontSize: "200%",
+        fontWeight: "200",
+        lineHeight: "1.5",
+        margin: "0",
+        color: "#00ff00"
+      }
+    }
   }
 
   componentDidMount() {
     this.play()
-  }
-
-  componentWillUnmount() {
-    this.pause()
   }
 
   pause() {
@@ -53,8 +59,29 @@ export default class Timer extends Component {
     let clock = this.state.clock
     clock += this.calculateOffset()
     this.setState({clock: clock })
+    if(this.props.options.maxTime*1000 <= clock + 30000) {
+      this.setState({
+        timerStyle: {
+          fontSize: "200%",
+          fontWeight: "200",
+          lineHeight: "1.5",
+          margin: "0",
+          color: "#ff0000"
+        }
+      })
+    }else if(this.props.options.maxTime*1000 <= clock + 60000) {
+      this.setState({
+        timerStyle: {
+          fontSize: "200%",
+          fontWeight: "200",
+          lineHeight: "1.5",
+          margin: "0",
+          color: "#FAA41A"
+        }
+      })
+    }
+
     if(this.props.options.maxTime*1000 <= clock){
-      alert('3e4f43');
       this.pause();
       this.reset();
       this.props.onTimerEnd();
@@ -73,7 +100,7 @@ export default class Timer extends Component {
   render() {
     const timerStyle = {
       margin: "0px",
-      padding: "2em"
+      // padding: "2em"
     };
 
     const buttonStyle = {
@@ -95,11 +122,7 @@ export default class Timer extends Component {
 
     return (
       <div style={timerStyle} className="react-timer">
-        <h3 style={secondsStyles} className="seconds"> {this.state.time} {this.props.prefix}</h3>
-        <br />
-        <button onClick={this.reset.bind(this)} style={buttonStyle} >reset</button>
-        <button onClick={this.play.bind(this)} style={buttonStyle} >play</button>
-        <button onClick={this.props.onTimerEnd} style={buttonStyle} >pause</button>
+        <h3 style={this.state.timerStyle} className="seconds"> {this.state.time} {this.props.prefix}</h3>
       </div>
     )
   }

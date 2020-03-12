@@ -2,7 +2,6 @@ import React from "react";
 import ReactTooltip from "react-tooltip";
 import "./NavBar.css";
 import IconButton from "../IconButton";
-import { NB_HOME, NB_RESET } from "../../constants/navBarAction";
 import Timer from "../Timer";
 
 
@@ -16,7 +15,10 @@ class NavBar extends React.Component {
     console.log('erfe');
     console.log(this.props);
     this.props.onTimerEnd();
-    // this.props.onTimerEnd.bind(this);
+  }
+
+  handleHomeClick(){
+    window.location.reload();
   }
 
   render() {
@@ -33,6 +35,8 @@ class NavBar extends React.Component {
           <span className="game-player">
             Player: {currentUser}
           </span>
+          <button onClick={this.props.handleResetGame} className="btn-home">RESET</button>
+          <button onClick={this.handleHomeClick.bind(this)} className="btn-home">HOME</button>
         </div>
       </div>
     );

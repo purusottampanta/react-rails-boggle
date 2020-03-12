@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const IconButton = props => {
   const { handleSubmit, tooltip, iconName, extraClass } = props;
 
+  var icon = iconName ? iconName : "home";
+
   return (
     <span
       className={extraClass ? extraClass : "action-button"}
@@ -13,7 +15,7 @@ const IconButton = props => {
     >
       <FontAwesomeIcon
         onClick={handleSubmit}
-        icon={iconName ? iconName : "home"}
+        icon={['far', icon]}
       />
     </span>
   );

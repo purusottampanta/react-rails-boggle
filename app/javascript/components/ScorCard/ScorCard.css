@@ -40,3 +40,8 @@
     font-size: 39px;
     margin-right: 0;
 }
+
+.score-container {
+    width: 50%;
+  margin: auto;
+}

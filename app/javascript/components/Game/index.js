@@ -32,7 +32,6 @@ console.log(props.data, props);
     let board_data = data.board_data;
 
     this.initBoard = shuffleBoard(board_data, boardSize);
-    // this.initBoard = [];
 
     this.state = {
       board: this.initBoard,
@@ -42,7 +41,7 @@ console.log(props.data, props);
       wordScoreList: {},
       showingScore: false,
       currentUser: currentUser,
-      timeLimit: 15
+      timeLimit: 180
     };
 
     this.onUserAction = this.onUserAction.bind(this);
@@ -53,6 +52,25 @@ console.log(props.data, props);
     console.log('erferewrferf');
     this.setState({
       showingScore: true
+    });
+  }
+
+  handleHomeClick(){
+    window.location.reload();
+  }
+
+  handleResetGame(){
+    const clearedBoard = this.initBoard;
+    const currentUser = this.state.currentUser;
+    this.setState({
+      board: clearedBoard,
+      currentWord: "",
+      currentWordPosition: [],
+      wrongCount: 0,
+      wordScoreList: {},
+      showingScore: false,
+      currentUser: currentUser,
+      timeLimit: 180
     });
   }
 
@@ -238,14 +256,20 @@ console.log(props.data, props);
     if(this.state.showingScore){
       return (
         <div className="score-container">
-        <NavBar onClick={this.onUserAction} timeLimit={this.state.timeLimit} onTimerEnd={this.onTimerEnd.bind(this)} currentUser={this.state.currentUser}/>
+          <h2>Score Card</h2>
+          <button onClick={this.handleHomeClick.bind(this)} className="btn-home">HOME</button>
           <ScorCard wordScoreList={this.state.wordScoreList} wrongCount={this.state.wrongCount} currentUser={this.state.currentUser}/>
         </div>
         );
     }else{
       return (
         <div className="game-container">
-        <NavBar onClick={this.onUserAction} timeLimit={this.state.timeLimit} onTimerEnd={this.onTimerEnd.bind(this)} currentUser={this.state.currentUser}/>
+          <NavBar onClick={this.onUserAction}
+            timeLimit={this.state.timeLimit}
+            onTimerEnd={this.onTimerEnd.bind(this)}
+            currentUser={this.state.currentUser}
+            handleResetGame={this.handleResetGame.bind(this)}
+            />
             <div className="game-area left-container">
               <Board board={this.state.board} handleClick={this.handleClick.bind(this)} />
               <CurrentWord
@@ -264,6 +288,7 @@ console.log(props.data, props);
             <ScoreBox wordScoreList={this.state.wordScoreList}/>
             <Button
               handleSubmit={this.onEndGameClick}
+              extraClass="btn-green"
               label="QUIT GAME"
             />
           </div>

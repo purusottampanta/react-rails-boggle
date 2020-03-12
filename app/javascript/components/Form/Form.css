@@ -14,7 +14,7 @@
 
 
 .input-selector {
-  display: grid;
+  /*display: grid;*/
   margin: 20px 0;
 }
 .input-element {
@@ -24,6 +24,19 @@
   box-sizing: border-box;
 }
 
+.name-input {
+  margin-left: 45px;
+}
+
+.start-button {
+  width: 20%;
+  margin: auto;
+  padding: 15px;
+}
+
+.btn-green {
+  background-color: green;
+}
 
 .input-label{
 

@@ -47,3 +47,16 @@
   float: left;
   width: 300px;
 }
+
+.game-container {
+  width: 50%;
+  margin: auto;
+}
+
+.btn-home {
+  font-size: 14px;
+  height: 35px;
+  text-align: center;
+  display: inline-block;
+  background-color: orange;
+}

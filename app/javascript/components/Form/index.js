@@ -9,16 +9,18 @@ const Form = props => {
   return (
     <div className="form">
       <form onSubmit={handleFormSubmit.bind(this)}>
+      <div className="input-selector">
+        <label className="input-label">Who is Playing? :</label>
       	<input
       	  type="text"
       	  name="userName"
-      	  className="form-control input-element"
+      	  className="input-element name-input"
       	  placeholder="Enter a User name > eg: John Doe"
       	  aria-label="userName"
       	  aria-describedby="basic-addon1"
       	  onChange={handleInputChange.bind(this)}
       	/>
-
+        </div>
       	<div className="input-selector">
       	  <label className="input-label">Choose a board size :</label>
 
@@ -30,7 +32,7 @@ const Form = props => {
       	  </select>
       	</div>
 
-        <button onClick={handleFormSubmit.bind(this)}>START GAME</button>
+        <button className="button start-button btn-green" onClick={handleFormSubmit.bind(this)}>START GAME</button>
        </form>
     </div>
   );

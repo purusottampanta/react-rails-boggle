@@ -11,14 +11,16 @@
 }
 
 .navbar-right {
-  float: right;
+  /*float: right;
   margin-right: 15px;
-  padding-right: 20px;
+  padding-right: 20px;*/
 }
 .game-player {
   text-transform: capitalize;
   color: #ef6c00;
   font-weight: 600;
+  float: left;
+  margin-left: 25px;
 }
 
 .game-stopwatch {
