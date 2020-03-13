@@ -27,7 +27,7 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
-console.log(props.data, props);
+
     let { data, boardSize, currentUser } = props;
     let board_data = data.board_data;
 
@@ -44,7 +44,6 @@ console.log(props.data, props);
       timeLimit: 180
     };
 
-    this.onUserAction = this.onUserAction.bind(this);
     this.onEndGameClick = this.onEndGameClick.bind(this);
   }
 
@@ -71,45 +70,6 @@ console.log(props.data, props);
       showingScore: false,
       currentUser: currentUser,
       timeLimit: 180
-    });
-  }
-
-  onUserAction(item) {
-    switch (item) {
-      case NB_HOME:
-      window.location.reload();
-        // this.backtoHome();
-        // this.props.history.push(ROUTE_INTRO);
-        break;
-
-      case NB_RESET:
-        window.location.reload();
-        // this.props.history.push(ROUTE_STAGE1);
-        break;
-
-      default:
-        alert(3);
-        break;
-    }
-  }
-
-  onEndGameClick() {
-    let props = this.props;
-    confirmAlert({
-      title: "Quit Game",
-      message: "Are you sure you want to end this game ?",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: () => {
-            props.history.push(ROUTE_SCORES);
-          }
-        },
-        {
-          label: "Not Yet ",
-          onClick: () => console.log("submission canceled")
-        }
-      ]
     });
   }
 
@@ -225,8 +185,6 @@ console.log(props.data, props);
     .then(res => res.json())
     .then(
       (result) => {
-        console.log('toit');
-        console.log(result);
         if(result.data.is_correct){
           const wList = {...this.state.wordScoreList, [word]:result.data.score}
           this.setState({
@@ -257,6 +215,7 @@ console.log(props.data, props);
       return (
         <div className="score-container">
           <h2>Score Card</h2>
+          <br />
           <button onClick={this.handleHomeClick.bind(this)} className="btn-home">HOME</button>
           <ScorCard wordScoreList={this.state.wordScoreList} wrongCount={this.state.wrongCount} currentUser={this.state.currentUser}/>
         </div>

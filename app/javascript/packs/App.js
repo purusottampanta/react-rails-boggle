@@ -8,6 +8,8 @@ import Board from '../components/Board';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { MessageType, InGameMessageType } from "../constants/messageType";
+import { showMessage, GenerateMessage } from "../helpers";
 
 
 class App extends Component {
@@ -31,7 +33,13 @@ class App extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    console.log('submit');
+    if (!this.state.userName || this.state.userName == "") {
+      showMessage(
+        MessageType.ERROR,
+        "Please enter your name before proceeding"
+      );
+      return;
+    }
 
     fetch(`/api/games/new?length=${this.state.boardSize}`)
     .then(res => res.json())
@@ -45,13 +53,17 @@ class App extends Component {
             },
             boardSize:this.state.boardSize
           });
+
+          showMessage(
+            MessageType.SUCCESS,
+            `Welcome! ${this.state.userName}. Let's play.`
+          );
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
       // exceptions from actual bugs in components.
       (error) => {
         console.log(error);
-        this.clearStage();
       }
     )
 
